@@ -22,8 +22,18 @@ idx = zeros(size(X,1), 1);
 %
 
 
-
-
+for i = 1:size(X,1)
+	min_val = sqrt( sum(( X(i, :) - centroids(1, :) ).^2) );
+	min_idx = 1;
+	for k = 2:K
+		val = sqrt( sum(( X(i, :) - centroids(k, :) ).^2) );
+		if min_val > val
+			min_val = val;
+			min_idx = k;
+		end
+	end
+	idx(i) = min_idx;
+end
 
 
 
